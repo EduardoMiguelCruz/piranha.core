@@ -46,6 +46,11 @@ namespace Piranha
         public Repositories.IArchiveRepository Archives { get; private set; }
 
         /// <summary>
+        /// Gets the block type repository.
+        /// </summary>
+        public Repositories.IBlockTypeRepository BlockTypes { get; private set; }
+
+        /// <summary>
         /// Gets the category repository.
         /// </summary>
         public Repositories.ICategoryRepository Categories { get; private set; }
@@ -132,6 +137,7 @@ namespace Piranha
 
             Aliases = new Repositories.AliasRepository(this, db, cacheLevel > 2 ? cache : null);
             Archives = new Repositories.ArchiveRepository(this, db);
+            BlockTypes = new Repositories.BlockTypeRepository(db, cacheLevel > 1 ? cache : null);
             Categories = new Repositories.CategoryRepository(this, db, cacheLevel > 2 ? cache : null);
             Media = new Repositories.MediaRepository(this, db, storage, cacheLevel > 2 ? cache : null, imageProcessor);
             Pages = new Repositories.PageRepository(this, db, cacheLevel > 2 ? cache : null);

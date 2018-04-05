@@ -24,6 +24,11 @@ namespace Piranha
         DbSet<Data.Alias> Aliases { get; set; }
 
         /// <summary>
+        /// Gets/sets the block type set.
+        /// </summary>
+        DbSet<Data.BlockType> BlockTypes { get; set; }
+
+        /// <summary>
         /// Gets/sets the category set.
         /// </summary>
         DbSet<Data.Category> Categories { get; set; }

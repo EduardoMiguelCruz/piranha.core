@@ -19,14 +19,19 @@ namespace Piranha
     public interface IApi : IDisposable
     {
         /// <summary>
-        /// Gets/sets the alias repository.
+        /// Gets the alias repository.
         /// </summary>
         Repositories.IAliasRepository Aliases { get; }
 
         /// <summary>
-        /// Gets/sets the archive repository.
+        /// Gets the archive repository.
         /// </summary>
         Repositories.IArchiveRepository Archives { get; }
+
+        /// <summary>
+        /// Gets the block type repository.
+        /// </summary>
+        Repositories.IBlockTypeRepository BlockTypes { get; }
 
         /// <summary>
         /// Gets the category repository.

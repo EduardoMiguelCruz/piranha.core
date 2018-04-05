@@ -34,6 +34,11 @@ namespace Piranha
         public DbSet<Data.Alias> Aliases { get; set; }
 
         /// <summary>
+        /// Gets/sets the block type set.
+        /// </summary>
+        public DbSet<Data.BlockType> BlockTypes { get; set; }
+
+        /// <summary>
         /// Gets/sets the category set.
         /// </summary>
         public DbSet<Data.Category> Categories { get; set; }
@@ -131,6 +136,10 @@ namespace Piranha
             mb.Entity<Data.Alias>().Property(a => a.AliasUrl).IsRequired().HasMaxLength(256);
             mb.Entity<Data.Alias>().Property(a => a.RedirectUrl).IsRequired().HasMaxLength(256);
             mb.Entity<Data.Alias>().HasIndex(a => new { a.SiteId, a.AliasUrl }).IsUnique();
+
+            mb.Entity<Data.BlockType>().ToTable("Piranha_BlockTypes");
+            mb.Entity<Data.BlockType>().Property(b => b.Id).HasMaxLength(64).IsRequired();
+            mb.Entity<Data.BlockType>().Property(b => b.CLRType).HasMaxLength(256);
 
             mb.Entity<Data.Category>().ToTable("Piranha_Categories");
             mb.Entity<Data.Category>().Property(c => c.Title).IsRequired().HasMaxLength(64);

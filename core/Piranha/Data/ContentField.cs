@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017 Håkan Edling
+ * Copyright (c) 2016-2018 Håkan Edling
  *
  * This software may be modified and distributed under the terms
  * of the MIT license.  See the LICENSE file for details.
@@ -35,7 +35,7 @@ namespace Piranha.Data
         public int SortOrder { get; set; }
 
         /// <summary>
-        /// Gets/sets the sort order of the value.
+        /// Gets/sets the CLR type of the field value.
         /// </summary>
         public string CLRType { get; set; }
 

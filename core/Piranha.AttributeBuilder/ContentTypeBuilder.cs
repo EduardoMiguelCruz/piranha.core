@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2016-2017 Håkan Edling
+ * Copyright (c) 2016-2018 Håkan Edling
  *
  * This software may be modified and distributed under the terms
  * of the MIT license.  See the LICENSE file for details.
@@ -18,7 +18,7 @@ using System.Linq;
 
 namespace Piranha.AttributeBuilder
 {
-    public abstract class ContentTypeBuilder<T, TType> where T : ContentTypeBuilder<T, TType> where TType : ContentType
+    public abstract class ContentTypeBuilder<T, TType> where T : ContentTypeBuilder<T, TType>
     {
         #region Members
         protected readonly List<Type> types = new List<Type>();
@@ -102,12 +102,8 @@ namespace Piranha.AttributeBuilder
                         Type = appFieldType.TypeName
                     });
                 } else {
-                    foreach (var fieldProp in type.GetProperties(App.PropertyBindings)) {
-                        var fieldType = GetFieldType(fieldProp);
+                    regionType.Fields = GetFields(type);
 
-                        if (fieldType != null)
-                            regionType.Fields.Add(fieldType);
-                    }
                     // Skip regions without fields.
                     if (regionType.Fields.Count == 0)
                         return null;
@@ -115,6 +111,18 @@ namespace Piranha.AttributeBuilder
                 return new Tuple<int?, RegionType>(sortOrder, regionType);
             }
             return null;
+        }
+
+        protected IList<FieldType> GetFields(Type type) {
+            var fields = new List<FieldType>();
+
+            foreach (var fieldProp in type.GetProperties(App.PropertyBindings)) {
+                var fieldType = GetFieldType(fieldProp);
+
+                if (fieldType != null)
+                    fields.Add(fieldType);
+            }
+            return fields;
         }
 
         /// <summary>
